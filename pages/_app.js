@@ -1,7 +1,12 @@
-import '../styles/globals.css'
+import User from '../utils/firebase'
+import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    // <User>
+      <Component {...pageProps} />
+    // </User>
+  )
 }
 
 export default MyApp

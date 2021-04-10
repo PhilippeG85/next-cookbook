@@ -1,0 +1,33 @@
+.app {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-image: linear-gradient(rgba(240,240,240,.3), rgba(240,240,240,.3)), url('/home.jpg');
+  background-size: cover;
+  h1 {
+    text-align: center;
+    font-size: 58px;
+  }
+}
+
+.logIn {
+  height: 300px;
+  width: 250px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .4);
+  position: relative;
+}
+
+.signIn {
+  position: absolute;
+  background-color: white;
+  border-radius: 8px;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
