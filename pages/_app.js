@@ -3,9 +3,9 @@ import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
   return (
-    // <User>
+    <User>
       <Component {...pageProps} />
-    // </User>
+    </User>
   )
 }
 
