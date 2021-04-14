@@ -1,10 +1,13 @@
-import User from '../utils/firebase'
+import { IsLoggedInProvider } from '../utils/userContext';
 import '../styles/globals.scss'
+import User from '../utils/firebase'
 
 function MyApp({ Component, pageProps }) {
   return (
     <User>
-      <Component {...pageProps} />
+      <IsLoggedInProvider>
+        <Component {...pageProps} />
+      </IsLoggedInProvider>
     </User>
   )
 }

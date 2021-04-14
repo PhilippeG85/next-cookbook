@@ -26,9 +26,9 @@ export default function User({ children }) {
             if (!user) {
                 Router.push('/')
             } 
-            // if (user && window.location.pathname === '/') {
-            //     Router.push('/cookbook')
-            // }
+            if (user && window.location.pathname === '/') {
+                Router.push('/cookbook')
+            }
         })
     }, [])
     return (

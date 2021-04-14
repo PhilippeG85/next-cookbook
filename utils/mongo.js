@@ -1,35 +1,18 @@
-import { MongoClient } from 'mongodb'
+import mongoose from 'mongoose'
 
-const { DB_COLLECTION, MONGODB_DB } = process.env
+const connection = {}
 
-if (!DB_COLLECTION) {
-    throw new Error(
-        'Please define the DB_COLLECTION environment variable'
-    )
-}
-
-let cached = global.mongo
-
-if (!cached) {
-    cached = global.mongo = { conn: null, promise: null }
-}
-
-export async function connectToDatabase() {
-    if (cached.conn) {
-        return cached.conn
+async function connectToDatabase() {
+    if (connection.isConnected) {
+        return;
     }
-    if (!cached.promise) {
-        const opts = {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }
-        cached.promise = MongoClient.connect(DB_COLLECTION, opts)
-            .then((client) => {
-                return {
-                    client
-                }
-            })
-    }
-    cached.conn = await cached.promise
-    return cached.conn
+
+    const db = await mongoose.connect(process.env.DB_COLLECTION, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+
+    connection.isConnected = db.connections[0].readyState;
 }
+
+export default connectToDatabase

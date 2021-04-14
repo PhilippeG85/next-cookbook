@@ -2,11 +2,11 @@ import { useState } from 'react'
 import styles from '../styles/Home.module.scss'
 import LogIn from '../components/LogIn'
 import SignIn from '../components/SignIn'
-import { connectToDatabase } from '../utils/mongo';
+import connectToDatabase from '../utils/mongo';
 
-export default function Home({ isConnected }) {
+export default function Home() {
   const [displaySign, setDisplaySign] = useState('none');
-  console.log(isConnected)
+  // console.log(`database: ${isConnected}`)
 
   const toggle = () => {
     if (displaySign === 'none') {
@@ -33,13 +33,12 @@ export default function Home({ isConnected }) {
   )
 }
 
-export async function getServerSideProps(context) {
-  const { client } = await connectToDatabase()
-  const isConnected = await client.isConnected()
+// export async function getServerSideProps(context) {
+//   const isConnected = await connectToDatabase()
 
-  return {
-    props: {
-      isConnected
-    }
-  }
-}
+//   return {
+//     props: {
+//       isConnected
+//     }
+//   }
+// }
