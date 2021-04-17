@@ -4,6 +4,7 @@ import { UserContext } from '../../utils/userContext'
 
 export default function Cookbook() {
     const userName = useContext(UserContext);
+    
     useEffect(() => {
         if (userName) {
             data()
@@ -12,7 +13,7 @@ export default function Cookbook() {
 
     const data = async () => {
         const res = await fetch(`http://localhost:3000/api/${userName.email}`)
-        const {data} = await res.json()
+        const { data } = await res.json()
         console.log(data)
     }
     return (
