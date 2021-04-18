@@ -1,9 +1,11 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Menu from '../../components/Menu'
 import { UserContext } from '../../utils/userContext'
+import RecipeCard from '../../components/RecipeCard'
 
 export default function Cookbook() {
     const userName = useContext(UserContext);
+    const [recipes, setRecipes] = useState([])
     
     useEffect(() => {
         if (userName) {
@@ -14,12 +16,16 @@ export default function Cookbook() {
     const data = async () => {
         const res = await fetch(`http://localhost:3000/api/${userName.email}`)
         const { data } = await res.json()
-        console.log(data)
+        setRecipes(data)
     }
     return (
         <div>
             <Menu>
-                <h1>inside Cookbook</h1>
+                <div style={{ width: "90%", margin: "0 auto" }}>
+                    {recipes.map((recipe) => {
+                        return <RecipeCard key={recipe.name} recipe={recipe} />
+                    })}
+                </div>
             </Menu>
         </div>
     )

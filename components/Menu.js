@@ -26,7 +26,7 @@ export default function Menu({ children }) {
                     </div>
                 </div>
             </div>
-            <div style={{ width: "75%" }}>
+            <div style={{ width: "75%", marginTop: "2rem" }}>
                 {children}
             </div>
         </div>
