@@ -2,8 +2,11 @@ import Link from 'next/link'
 import styles from '../styles/Menu.module.scss'
 import Router from 'next/router'
 import { auth } from '../utils/firebase'
+import { UserContext } from '../utils/userContext'
+import { useContext } from 'react'
 
 export default function Menu({ children }) {
+    const userName = useContext(UserContext)
     const handleClick = (e) => {
         e.preventDefault()
         auth.signOut()
@@ -13,13 +16,14 @@ export default function Menu({ children }) {
     return (
         <div className={styles.menu}>
             <div className={styles.leftMenu}>
-                <h3>Your<br />Cookbook</h3>
+                <h3>Votre livre de recette</h3>
+                <h5>{userName.email}</h5>
                 <div className={styles.menuContent}>
                     <div>
-                        <Link href='/cookbook/new' className="">New recipe</Link>
+                        <Link href='/cookbook/new' className="">Ajouter une recette</Link>
                     </div>
                     <div>
-                        <Link href='/cookbook'>All recipes</Link>
+                        <Link href='/cookbook'>Toutes vos recettes</Link>
                     </div>
                     <div>
                         <button href='/' className="" onClick={handleClick}>Sign out</button>
