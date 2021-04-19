@@ -12,16 +12,10 @@ export default function NewRecipe() {
     const [tag, setTag] = useState('');
     const [step] = useState([]);
     const [num, setNum] = useState([1]);
-    console.log(step)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const ingredientArray = ingredient.split(' ');
-        for (let key in step) {
-            if (step[key] === '') {
-                delete step[key];
-            }
-        }
         const newRecipe = {
             name,
             ingredient: ingredientArray,
@@ -31,11 +25,16 @@ export default function NewRecipe() {
             description: step,
             user: user.email
         }
-        console.log(newRecipe)
-        // axios.post('/recipe/add-recipe', newRecipe)
-        //     .then(res => console.log(res))
-        //     .catch(err => console.log(err))
-        // window.location.reload();
+        try {
+            const res = await fetch('http://localhost:3000/api/new', {
+                method: "POST", 
+                body: JSON.stringify(newRecipe)
+            })
+            const data = await res.json()
+            console.log(data)
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     const handleChange = (e, nam) => {

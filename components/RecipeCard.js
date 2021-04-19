@@ -2,7 +2,6 @@ import style from '../styles/RecipeCard.module.scss'
 import Link from 'next/link'
 
 export default function RecipeCard({ recipe }) {
-    console.log(recipe)
     return (
         <Link href={`/cookbook/${recipe.name}`}>
             <a>

@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
-import { UserContext } from '../../utils/userContext'
-import Menu from '../../components/Menu'
-import style from '../../styles/Name.module.scss'
+import { UserContext } from '../../../utils/userContext'
+import Menu from '../../../components/Menu'
+import style from '../../../styles/Name.module.scss'
 import Link from 'next/link'
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

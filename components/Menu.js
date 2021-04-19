@@ -16,10 +16,10 @@ export default function Menu({ children }) {
                 <h3>Your<br />Cookbook</h3>
                 <div className={styles.menuContent}>
                     <div>
-                        <Link href='/' className="">New recipe</Link>
+                        <Link href='/cookbook/new' className="">New recipe</Link>
                     </div>
                     <div>
-                        <Link href='/'>All recipes</Link>
+                        <Link href='/cookbook'>All recipes</Link>
                     </div>
                     <div>
                         <button href='/' className="" onClick={handleClick}>Sign out</button>
