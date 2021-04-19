@@ -1,6 +1,7 @@
 import { UserContext } from '../../../utils/userContext'
 import { useContext, useEffect, useState } from 'react'
 import Menu from '../../../components/Menu'
+import Link from 'next/link'
 import style from '../../../styles/Update.module.scss'
 
 export default function Update() {
@@ -87,7 +88,7 @@ export default function Update() {
     return (
         <Menu>
             <div className={style.updatePage}>
-                <button onClick={handleClick}>Retour</button>
+                <Link href={`/cookbook/${recipe.name}`} className={style.sbtn}>Retour</Link>
                 <h1 style={{ textAlign: "center" }}>Update Recipe</h1>
                 <div>
                     <form onSubmit={handleSubmit} className={style.newForm}>
@@ -132,7 +133,7 @@ export default function Update() {
                                 })
                             }
                         </div>
-                        <input type='submit' value='Update recipe' required />
+                        <input className={style.sbtn} type='submit' value='Update recipe' required />
                     </form>
                     <button onClick={handleClick}>add element</button>
                 </div>

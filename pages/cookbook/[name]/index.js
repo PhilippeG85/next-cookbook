@@ -5,8 +5,10 @@ import style from '../../../styles/Name.module.scss'
 import Link from 'next/link'
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from 'next/router'
 
 export default function Recipe() {
+    const router = useRouter()
     const userName = useContext(UserContext);
     const [recipe, setRecipe] = useState({});
     console.log(recipe)
@@ -39,9 +41,14 @@ export default function Recipe() {
         }
     }
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (window.confirm("Are you sure you want to delete this recipe?")) {
-            console.log('to do delete')
+            try {
+                const res = await fetch(`http://localhost:3000/api/delete/${recipe._id}`, { method: 'DELETE' })
+                router.push('/cookbook')
+            } catch (err) {
+                console.log(err)
+            }
         }
     }
 
