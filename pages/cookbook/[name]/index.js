@@ -31,12 +31,20 @@ export default function Recipe() {
             })
         }
     }
+    const displayDescription = () => {
+        if (recipe.description) {
+            return recipe.description.map((des, i) => {
+                return <p key={i}>{i + 1} {des}</p>
+            })
+        }
+    }
 
     const handleClick = () => {
         if (window.confirm("Are you sure you want to delete this recipe?")) {
             console.log('to do delete')
         }
     }
+
 
     return (
         <Menu>
@@ -55,6 +63,7 @@ export default function Recipe() {
                 </div>
                 <div className={style.etape}>
                     <h3>Etapes:</h3>
+                    {displayDescription()}
                 </div>
                 <div className={style.recipeLink}>
                     <Link href={`/cookbook/${recipe.name}/update`}>Update</Link>
