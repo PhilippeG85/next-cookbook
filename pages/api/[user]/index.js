@@ -1,5 +1,5 @@
-import connectToDatabase from '../../utils/mongo'
-import Recipe from '../../models/Recipe'
+import connectToDatabase from '../../../utils/mongo'
+import Recipe from '../../../models/Recipe'
 
 connectToDatabase()
 

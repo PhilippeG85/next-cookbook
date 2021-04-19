@@ -6,7 +6,7 @@ const recipeSchema = new mongoose.Schema({
     time: { type: String, required: true },
     level: { type: String, required: true },
     tag: { type: String, required: false },
-    description: { type: Object, required: true },
+    description: { type: Array, required: true },
     user: { type: String, required: true }
   });
   

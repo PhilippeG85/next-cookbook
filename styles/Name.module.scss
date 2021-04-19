@@ -1,0 +1,33 @@
+.recipe {
+    height: 100%;
+    h1 {
+        text-align: center;
+    }
+    ul {
+        margin: 0;
+    }
+}
+
+.recipeIng {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4rem;
+}
+
+.etape {
+    margin-top: 4rem;
+    margin-left: 4rem;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.recipeLink {
+    display: flex;
+    justify-content: flex-end;
+    width: 80%;
+    a {
+        margin-right: 1rem;
+    }
+}

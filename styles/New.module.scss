@@ -1,0 +1,104 @@
+.newForm {
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+    input {
+        border: none;
+        height: 52px;
+        &:focus {
+            outline: none;
+        }
+    }
+    .timeLevel {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        div {
+            width: 49%;
+        }
+    }
+}
+
+.styleInput {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+    input {
+        width: 100%;
+        padding-left: 12px;
+        padding-top: 20px;
+    }
+    label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        padding-left: 12px;
+        border-bottom: 1px solid black;
+        &::after {
+            content: "";
+            bottom: -1px;
+            right: 0px;
+            left: -1px;
+            border: 2px solid green;
+            position: absolute;
+            transform: translateX(-100%);
+            transition: transform .3s ease;
+        }
+        span {
+            position: absolute;
+            bottom: 4px;
+            left: 6px;
+            transition: all .3s ease;
+        }
+    }
+    
+}
+.newForm input:focus + .label .spanContent,
+.newForm input:valid + .label .spanContent {
+    transform: translateY(-100%);
+    color: rgb(145, 145, 145);
+}
+
+.newForm input:focus + .label::after,
+.newForm input:valid + .label::after {
+    transform: translateX(0%);
+}
+
+.stepContent {
+    display: flex;
+    align-items: flex-end;
+    label {
+        padding-bottom: 4px;
+    }
+    .styleInput {
+        flex-grow: 1;
+        margin-left: 12px;
+    }
+}
+
+.instructionsAndForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 62px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+    border-radius: 12px;
+    .flexForm {
+        margin: 24px;
+        background: rgb(110, 166, 250);
+        border-radius: 8px;
+        .styleInput input {
+            background: rgb(110, 166, 250);
+        }
+    }
+}
+.addRecipeContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
