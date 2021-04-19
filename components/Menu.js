@@ -17,7 +17,7 @@ export default function Menu({ children }) {
         <div className={styles.menu}>
             <div className={styles.leftMenu}>
                 <h3>Votre livre de recette</h3>
-                <h5>{userName.email}</h5>
+                <h5>{userName && userName.email}</h5>
                 <div className={styles.menuContent}>
                     <div>
                         <Link href='/cookbook/new' className="">Ajouter une recette</Link>

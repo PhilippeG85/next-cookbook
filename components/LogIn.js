@@ -19,7 +19,6 @@ export default function LogIn({ handle }) {
         e.preventDefault()
         auth.signInWithEmailAndPassword(email, password)
             .then(res => {
-                const user = user.email
                 return Router.push('/cookbook')
             })
             .catch(err => {
