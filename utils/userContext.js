@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from './firebase';
 
-const UserContext = React.createContext({ user: null });
+const UserContext = React.createContext({ user: '' });
 
 function IsLoggedInProvider(props) {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState('');
 
     useEffect(() => {
         auth.onAuthStateChanged((userAuth) => {
