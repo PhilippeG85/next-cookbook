@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import Menu from '../../components/Menu'
 import { UserContext } from '../../utils/userContext'
 import RecipeCard from '../../components/RecipeCard'
+import Head from 'next/head'
 
 export default function Cookbook() {
     const userName = useContext(UserContext);
@@ -20,6 +21,9 @@ export default function Cookbook() {
     }
     return (
         <div>
+            <Head>
+                <title>The Cookbook | All Recipe</title>
+            </Head>
             <Menu>
                 <div style={{ textAlign: "center" }}>
                     {recipes.map((recipe) => {
