@@ -29,14 +29,14 @@ export default function Recipe() {
     const displayIngredient = () => {
         if (recipe.ingredient) {
             return recipe.ingredient.map((ing, i) => {
-                return <li key={i}>{ing}</li>
+                return <div className={style.liIng} key={i}><li>{ing}</li></div>
             })
         }
     }
     const displayDescription = () => {
         if (recipe.description) {
             return recipe.description.map((des, i) => {
-                return <p key={i}>{i + 1} {des}</p>
+                return <div key={i}><h3>Etapes {i + 1}:</h3><p>{des}</p></div>
             })
         }
     }
@@ -56,25 +56,27 @@ export default function Recipe() {
     return (
         <Menu>
             <div className={style.recipe}>
+                <Link href='/cookbook' ><a className={style.retourBtn}>Retour</a></Link>
                 <h1>{recipe.name}</h1>
-                <div className={style.recipeIng}>
-                    <div>
+                <img src='/home.jpg' alt='recipe img' className={style.recipeImg} />
+                <div className={style.container}>
+                    <div className={style.time}>
+                        <p>Temps: {recipe.time}</p>
+                        <p>Level: {recipe.level}</p>
+                    </div>
+                    <div className={style.recipeIng}>
+                        <h3>Ingredients:</h3>
                         <ul>
                             {displayIngredient()}
                         </ul>
                     </div>
-                    <div>
-                        <p>Temps: {recipe.time}</p>
-                        <p>Level: {recipe.level}</p>
+                    <div className={style.etape}>
+                        {displayDescription()}
                     </div>
-                </div>
-                <div className={style.etape}>
-                    <h3>Etapes:</h3>
-                    {displayDescription()}
-                </div>
-                <div className={style.recipeLink}>
-                    <Link href={`/cookbook/${recipe.name}/update`}>Update</Link>
-                    <FontAwesomeIcon className={style.pointer} icon={faTrashAlt} onClick={handleClick} />
+                    <div className={style.recipeLink}>
+                        <Link href={`/cookbook/${recipe.name}/update`}>Update</Link>
+                        <FontAwesomeIcon className={style.pointer} icon={faTrashAlt} onClick={handleClick} />
+                    </div>
                 </div>
             </div>
         </Menu>

@@ -1,5 +1,6 @@
 .recipe {
     height: 100%;
+    position: relative;
     h1 {
         text-align: center;
     }
@@ -8,15 +9,35 @@
     }
 }
 
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.time {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .recipeIng {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 4rem;
+    margin-top: 3rem;
+    h3 {
+        margin-bottom: 1rem;
+    }
+}
+
+.liIng {
+    display: inline-block;
+    width: 50%;
 }
 
 .etape {
-    margin-top: 4rem;
-    margin-left: 4rem;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    div {
+        margin-bottom: 1rem;
+    }
 }
 
 .pointer {
@@ -24,10 +45,28 @@
 }
 
 .recipeLink {
-    display: flex;
-    justify-content: flex-end;
-    width: 80%;
+    position: absolute;
+    bottom: 18px;
+    right: 50%;
+    transform: translate(50%, 0px);
     a {
         margin-right: 1rem;
+    }
+}
+
+.recipeImg {
+    width: 100%;
+    object-fit: cover;
+    max-height: 250px;
+    object-position: center;
+    margin: 24px 0;
+}
+
+.retourBtn {
+    position: absolute;
+    top: 12px;
+    left: 10%;
+    &:hover {
+        text-decoration: underline;
     }
 }

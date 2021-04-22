@@ -1,6 +1,7 @@
 import { UserContext } from '../utils/userContext'
 import { useState, useContext } from 'react'
 import style from '../styles/New.module.scss'
+import NewImage from './NewImage';
 
 
 export default function NewRecipe() {
@@ -117,6 +118,7 @@ export default function NewRecipe() {
                 </div>
                 <input type='submit' value='Add this recipe' required />
             </form>
+            {/* <NewImage /> */}
             <button onClick={handleClick}>add element</button>
         </div>
     )
