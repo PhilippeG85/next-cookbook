@@ -1,5 +1,5 @@
 import { UserContext } from '../utils/userContext'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import style from '../styles/New.module.scss'
 import NewImage from './NewImage';
 
@@ -11,19 +11,19 @@ export default function NewRecipe() {
     const [time, setTime] = useState('');
     const [level, setLevel] = useState('');
     const [tag, setTag] = useState('');
-    const [step] = useState([]);
-    const [num, setNum] = useState([1]);
+    const [step, setStep] = useState({etapes: [' ']});
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const ingredientArray = ingredient.split(' ');
+        const filterDescription = step.etapes.filter(step => step !== '')
         const newRecipe = {
             name,
             ingredient: ingredientArray,
             time,
             level,
             tag,
-            description: step,
+            description: filterDescription,
             user: user.email
         }
         try {
@@ -53,32 +53,34 @@ export default function NewRecipe() {
     }
 
     const handleStepChange = (e) => {
-        step.splice((e.target.name - 1), 1, e.target.value)
+        let newStepArray = step.etapes
+        newStepArray.splice(e.target.name, 1, e.target.value)
+        setStep(prevItems => ({ ...prevItems, etapes: newStepArray}))
     }
 
-    const displaySteps = (n, index) => {
+    const displaySteps = (s, index) => {
         return (
-            <div className='step-content' key={index}>
-                <label>Step {n}: </label>
-                <div className='style-input'>
-                    <input type='text' name={`${n}`} value={step[`step_${n}`]} onChange={handleStepChange} autoComplete='off' required />
-                    <label className='label'>
-                    </label>
-                </div>
+            <div key={index} className={style.styleInput}>
+                <input type='text' name={index} value={step[index]} onChange={handleStepChange} autoComplete='off' required={index === 0 ? true : false} />
+                <label className={style.label}>
+                    <span className={style.spanContent}>Etape {index + 1}: </span>
+                </label>
             </div>
-        );
+        )
     }
     const handleClick = () => {
-        setNum(prevNum => [...prevNum, ((prevNum.length) + 1)])
+        const newEl = step.etapes
+        newEl.push('')
+        setStep(prevItems => ({ ...prevItems, etapes: newEl }))
     }
     
     return (
-        <div>
+        <div className={style.form}>
             <form onSubmit={handleSubmit} className={style.newForm}>
                 <div className={style.styleInput}>
                     <input type="text" name='name' value={name} onChange={handleChange} autoComplete='off' required />
                     <label className={style.label}>
-                        <span className={style.spanContent}>Name</span>
+                        <span className={style.spanContent}>Nom</span>
                     </label>
                 </div>
                 <div className={style.styleInput}>
@@ -91,13 +93,13 @@ export default function NewRecipe() {
                     <div className={style.styleInput}>
                         <input type='text' name='time' value={time} onChange={handleChange} autoComplete='off' required />
                         <label className={style.label}>
-                            <span className={style.spanContent}>Time</span>
+                            <span className={style.spanContent}>Temps</span>
                         </label>
                     </div>
                     <div className={style.styleInput}>
                         <input type='text' name='level' value={level} onChange={handleChange} autoComplete='off' required />
                         <label className={style.label}>
-                            <span className={style.spanContent}>Level</span>
+                            <span className={style.spanContent}>Niveau</span>
                         </label>
                     </div>
                 </div>
@@ -109,17 +111,17 @@ export default function NewRecipe() {
                 </div>
                 <div id='steps'>
                     {
-                        num.map((n, index) => {
-                            return (
-                                displaySteps(n, index)
-                            );
+                        step.etapes.map((step, i) => {
+                            return (displaySteps(step, i))
                         })
                     }
                 </div>
-                <input type='submit' value='Add this recipe' required />
+                <div className={style.newStep} onClick={handleClick}>Ajouter une étape</div>
+                <div style={{position: "relative", height: "38px"}}>
+                    <input className={style.submitBtn} type='submit' value='Enregistrer' required />
+                </div>
             </form>
             {/* <NewImage /> */}
-            <button onClick={handleClick}>add element</button>
         </div>
     )
 }

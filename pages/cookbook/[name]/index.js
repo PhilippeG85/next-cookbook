@@ -36,7 +36,9 @@ export default function Recipe() {
     const displayDescription = () => {
         if (recipe.description) {
             return recipe.description.map((des, i) => {
-                return <div key={i}><h3>Etapes {i + 1}:</h3><p>{des}</p></div>
+                if (des !== ' ') {
+                    return <div key={i}><h3>Etapes {i + 1}:</h3><p>{des}</p></div>
+                }
             })
         }
     }

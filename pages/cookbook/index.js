@@ -27,7 +27,7 @@ export default function Cookbook() {
             <Menu>
                 <div style={{ textAlign: "center" }}>
                     {recipes.map((recipe) => {
-                        return <RecipeCard key={recipe.name} recipe={recipe} />
+                        return <RecipeCard key={recipe._id} recipe={recipe} />
                     })}
                 </div>
             </Menu>
