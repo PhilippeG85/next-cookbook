@@ -60,7 +60,9 @@ export default function Recipe() {
             <div className={style.recipe}>
                 <Link href='/cookbook' ><a className={style.retourBtn}>Retour</a></Link>
                 <h1>{recipe.name}</h1>
-                <img src='/home.jpg' alt='recipe img' className={style.recipeImg} />
+                <div style={{width: "90%", margin: "0 auto"}}>
+                    <img src='/home.jpg' alt='recipe img' className={style.recipeImg} />
+                </div>
                 <div className={style.container}>
                     <div className={style.time}>
                         <p>Temps: {recipe.time}</p>

@@ -8,17 +8,18 @@
     flex-direction: column;
     width: 25%;
     padding-left: 4%;
-    padding-top: 24px;
+    padding-top: 36px;
     h3 {
-        margin-bottom: 24px;
+        margin-bottom: 8px;
     }
 }
 
 .menuContent {
     display: flex;
     flex-direction: column;
-    height: 22%;
+    height: 34%;
     justify-content: space-evenly;
+    margin-top: 2rem;
     a:hover {
         text-decoration: underline;
     }

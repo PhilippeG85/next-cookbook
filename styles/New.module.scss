@@ -116,6 +116,7 @@
     margin-top: 8px;
     text-align: center;
     font-size: 14px;
+    transition: all ease .4s;
     &:hover {
         cursor: pointer;
         background-color: white;
@@ -125,6 +126,7 @@
 }
 
 .submitBtn {
+    border: 1px solid transparent !important;
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0px);
@@ -135,6 +137,7 @@
     color: white;
     top: 24px;
     height: auto !important;
+    transition: all ease .4s;
     &:hover {
         cursor: pointer;
         background-color: white;

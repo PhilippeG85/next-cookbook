@@ -49,8 +49,21 @@
     bottom: 18px;
     right: 50%;
     transform: translate(50%, 0px);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    svg {
+        height: 18px;
+        transition: all ease .4s;
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
     a {
         margin-right: 1rem;
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
 
@@ -60,6 +73,7 @@
     max-height: 250px;
     object-position: center;
     margin: 24px 0;
+    border-radius: 4px;
 }
 
 .retourBtn {

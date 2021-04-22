@@ -27,13 +27,17 @@ export default function LogIn({ handle }) {
     }
     return (
         <div className={styles.logIn}>
-            <h3>Se Connecter</h3>
+            <h3>Se connecter</h3>
             <form onSubmit={handleSubmit} className={styles.logForm}>
                 <input type='text' placeholder='Email' name='email' value={email} onChange={handleChange} />
-                <input type='password' placeholder='Password' value={password} onChange={handleChange} />
-                <input type='submit' value='Connexion' />
+                <input type='password' placeholder='Mot de passe' value={password} onChange={handleChange} />
+                <input className={styles.connectBtn} type='submit' value='Connexion' />
             </form>
-            <button onClick={() => handle()}>S&apos;inscrire</button>
+            <div className={styles.subBtn}>
+                <hr className={styles.hr} />
+                <span>Pas encore inscrit?</span>
+                <button onClick={() => handle()}>S&apos;inscrire</button>
+            </div>
         </div>
     )
 }

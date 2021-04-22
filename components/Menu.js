@@ -26,7 +26,7 @@ export default function Menu({ children }) {
                         <Link href='/cookbook'>Toutes vos recettes</Link>
                     </div>
                     <div>
-                        <button href='/' className="" onClick={handleClick}>Sign out</button>
+                        <a href='/' className={styles.signOut} onClick={handleClick}>Sign out</a>
                     </div>
                 </div>
             </div>
