@@ -3,7 +3,7 @@ import { useState } from 'react'
 export default function NewImage() {
     const [image, setImage] = useState('');
     const url = process.env.CLOUDINARY_URL
-    const preset = process.env.ejkhthzs
+    const preset = process.env.UPLOAD_PRESET
 
     const handleImage = (e) => {
         setImage(e.target.files[0])
