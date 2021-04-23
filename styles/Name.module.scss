@@ -84,3 +84,13 @@
         text-decoration: underline;
     }
 }
+
+@media (max-width: 640px) {
+    .recipe {
+        display: flex;
+        flex-direction: column;
+        h1 {
+            padding-top: 32px;
+        }
+    }
+}

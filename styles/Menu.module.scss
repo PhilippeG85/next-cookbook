@@ -24,3 +24,61 @@
         text-decoration: underline;
     }
 }
+
+.menuMobile {
+    display: none;
+    flex-direction: column;
+}
+
+.navBarMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 48px;
+    box-shadow: 0px 0 6px rgb(0 0 0 / 20%);
+    background: white;
+    position: relative;
+    position: sticky;
+    top: 0px;
+    z-index: 999;
+}
+
+.navBarDropDown {
+    position: absolute;
+    bottom: -262px;
+    width: 100%;
+    background: white;
+    height: 262px;
+    box-shadow: 0px 6px 6px rgb(0 0 0 / 20%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    transform: scaleX(0);
+    transform-origin: top;
+    z-index: 9999;
+}
+
+.dropDownElements {
+    width: 50%;
+}
+
+.hr {
+    margin: 0;
+}
+
+.hrBorder {
+    margin: 0;
+    border: none;
+    border-top: 1px solid black;
+    width: 80%;
+}
+
+@media (max-width: 640px) {
+    .menu {
+        display: none;
+    }
+    .menuMobile {
+        display: flex;
+    }
+}

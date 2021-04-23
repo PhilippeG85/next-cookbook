@@ -14,14 +14,19 @@ export default function NewImage() {
         const formData = new FormData();
         formData.append('file', image);
         formData.append("upload_preset", preset);
-        const res = await fetch(url, { method: 'POST', body: formData })
-        const data = await res.json()
-        console.log(data)
+        try {
+            const res = await fetch(url, { method: 'POST', body: formData })
+            const data = await res
+            console.log(data)
+        } catch (err) {
+            console.log(err)
+        }
     }
+    
     return (
         <form onSubmit={handleSubmit}>
             <input type='file' name='image' onChange={handleImage} />
-            <input type='submit' value='image sub' />
+            <input type='submit' value='image sub' />            
         </form>
     )
 }

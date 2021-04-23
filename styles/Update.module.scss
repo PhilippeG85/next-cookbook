@@ -2,6 +2,14 @@
     position: relative;
 }
 
+.formDiv {
+    background: white;
+    padding: 40px;
+    margin: 32px;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgb(0 0 0 / 20%);
+}
+
 .updatePage > button {
     position: absolute;
     top: 12px;
@@ -17,7 +25,6 @@
 .newForm {
     display: flex;
     flex-direction: column;
-    margin: 40px;
     input {
         border: none;
         height: 52px;
@@ -40,6 +47,7 @@
     overflow: hidden;
     margin-bottom: 12px;
     input {
+        font-size: 16px;
         width: 100%;
         padding-left: 12px;
         padding-top: 20px;
@@ -59,14 +67,14 @@
             bottom: -1px;
             right: 0px;
             left: -1px;
-            border: 2px solid rgb(76, 165, 76);
+            border: 2px solid #0D6DFD;
             position: absolute;
             transform: translateX(-100%);
             transition: transform .3s ease;
         }
         span {
             position: absolute;
-            bottom: 4px;
+            bottom: 10px;
             left: 6px;
             transition: all .3s ease;
         }
@@ -98,4 +106,62 @@
 
 .sbtn {
     cursor: pointer;
+}
+
+.bbtn {
+    cursor: pointer;
+    position: absolute;
+    left: 36px;
+}
+
+.newStep {
+    border: 1px solid transparent;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #0D6DFD;
+    color: white;
+    width: 100px;
+    margin-top: 8px;
+    text-align: center;
+    font-size: 14px;
+    transition: all ease .4s;
+    &:hover {
+        cursor: pointer;
+        background-color: white;
+        color: #0D6DFD;
+        border: 1px solid #0D6DFD !important;
+    }
+}
+
+.submitBtn {
+    border: 1px solid transparent !important;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0px);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #0D6DFD;
+    color: white;
+    top: 24px;
+    height: auto !important;
+    transition: all ease .4s;
+    &:hover {
+        cursor: pointer;
+        background-color: white;
+        color: #0D6DFD;
+        border: 1px solid #0D6DFD !important;
+    }
+}
+
+.updateh1 {
+    text-align: center;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+    .updateh1 {
+        padding-top: 24px;
+    }
 }

@@ -74,13 +74,11 @@ export default function Update() {
 
     const displaySteps = (n, index) => {
         return (
-            <div className={style.stepContent} key={index}>
-                <label>Step {index + 1}: </label>
-                <div className={style.styleInput}>
-                    <input type='text' name={index} value={recipe.description[index]} onChange={handleStepChange} autoComplete='off' />
-                    <label className={style.label}>
-                    </label>
-                </div>
+            <div key={index} className={style.styleInput}>
+                <input type='text' name={index} value={recipe.description[index]} onChange={handleStepChange} autoComplete='off' />
+                <label className={style.label}>
+                    <span className={style.spanContent}>Etape {index + 1}</span>
+                </label>
             </div>
         );
     }
@@ -88,33 +86,33 @@ export default function Update() {
     return (
         <Menu>
             <div className={style.updatePage}>
-                <Link href={`/cookbook/${recipe.name}`} className={style.sbtn}>Retour</Link>
-                <h1 style={{ textAlign: "center" }}>Update Recipe</h1>
-                <div>
+                <Link href={`/cookbook/${recipe.name}`}><a className={style.bbtn}>Retour</a></Link>
+                <h1 className={style.updateh1}>Mettre à jour: {recipe.name}</h1>
+                <div className={style.formDiv}>
                     <form onSubmit={handleSubmit} className={style.newForm}>
                         <div className={style.styleInput}>
                             <input type="text" name='name' value={recipe.name} onChange={handleChange} autoComplete='off' required />
                             <label className={style.label}>
-                                <span className={style.spanContent}>Name</span>
+                                <span className={style.spanContent}>Nom</span>
                             </label>
                         </div>
                         <div className={style.styleInput}>
                             <input type="text" name='ingredient' value={ing} onChange={handleChange} autoComplete='off' required />
                             <label className={style.label}>
-                                <span className={style.spanContent}>Ingredient</span>
+                                <span className={style.spanContent}>Ingredients</span>
                             </label>
                         </div>
                         <div className='time-level'>
                             <div className={style.styleInput}>
                                 <input type='text' name='time' value={recipe.time} onChange={handleChange} autoComplete='off' required />
                                 <label className={style.label}>
-                                    <span className={style.spanContent}>Time</span>
+                                    <span className={style.spanContent}>Temps</span>
                                 </label>
                             </div>
                             <div className={style.styleInput}>
                                 <input type='text' name='level' value={recipe.level} onChange={handleChange} autoComplete='off' required />
                                 <label className={style.label}>
-                                    <span className={style.spanContent}>Level</span>
+                                    <span className={style.spanContent}>Niveau</span>
                                 </label>
                             </div>
                         </div>
@@ -133,9 +131,11 @@ export default function Update() {
                                 })
                             }
                         </div>
-                        <input className={style.sbtn} type='submit' value='Update recipe' required />
+                        <div className={style.newStep} onClick={handleClick}>Ajouter une étape</div>
+                        <div style={{position: "relative", height: "38px"}}>
+                            <input className={style.submitBtn} type='submit' value='Enregistrer' required />
+                        </div>
                     </form>
-                    <button onClick={handleClick}>add element</button>
                 </div>
             </div>
         </Menu>
