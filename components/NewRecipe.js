@@ -1,7 +1,8 @@
 import { UserContext } from '../utils/userContext'
 import { useState, useContext, useEffect } from 'react'
 import style from '../styles/New.module.scss'
-import NewImage from './NewImage';
+import axios from 'axios';
+import Head from 'next/head'
 
 
 export default function NewRecipe() {
@@ -12,9 +13,27 @@ export default function NewRecipe() {
     const [level, setLevel] = useState('');
     const [tag, setTag] = useState('');
     const [step, setStep] = useState({etapes: [' ']});
+    const [image, setImage] = useState('');
+
+    const url = process.env.NEXT_PUBLIC_CLOUDINARY_URL
+    const preset = process.env.NEXT_PUBLIC_UPLOAD_PRESET
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (image !== '') {
+            let formData = new FormData();
+            formData.append('file', image);
+            formData.append("upload_preset", preset);
+            axios.post(url, formData)
+                .then(res => handleSubmitNext(res.data.secure_url))
+                .catch(err => console.log(err))
+        } else {
+            const noImg = ''
+            handleSubmitNext(noImg)
+        }
+    }
+
+    const handleSubmitNext = async (url) => {
         const ingredientArray = ingredient.split(' ');
         const filterDescription = step.etapes.filter(step => step !== '')
         const newRecipe = {
@@ -24,7 +43,8 @@ export default function NewRecipe() {
             level,
             tag,
             description: filterDescription,
-            user: user.email
+            user: user.email,
+            imgUrl: url
         }
         try {
             const res = await fetch('http://localhost:3000/api/new', {
@@ -73,9 +93,16 @@ export default function NewRecipe() {
         newEl.push('')
         setStep(prevItems => ({ ...prevItems, etapes: newEl }))
     }
+
+    const handleImage = (e) => {
+        setImage(e.target.files[0])
+    }
     
     return (
         <div className={style.form}>
+            <Head>
+                <title>The Cookbook | Nouvelle Recette</title>
+            </Head>
             <form onSubmit={handleSubmit} className={style.newForm}>
                 <div className={style.styleInput}>
                     <input type="text" name='name' value={name} onChange={handleChange} autoComplete='off' required />
@@ -117,11 +144,13 @@ export default function NewRecipe() {
                     }
                 </div>
                 <div className={style.newStep} onClick={handleClick}>Ajouter une étape</div>
+                <div>
+                    <input type='file' name='image' onChange={handleImage} />
+                </div>
                 <div style={{position: "relative", height: "38px"}}>
                     <input className={style.submitBtn} type='submit' value='Enregistrer' required />
                 </div>
             </form>
-            {/* <NewImage /> */}
         </div>
     )
 }

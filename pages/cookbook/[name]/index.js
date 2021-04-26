@@ -47,6 +47,7 @@ export default function Recipe() {
         if (window.confirm("Are you sure you want to delete this recipe?")) {
             try {
                 const res = await fetch(`http://localhost:3000/api/delete/${recipe._id}`, { method: 'DELETE' })
+                const data = await res
                 router.push('/cookbook')
             } catch (err) {
                 console.log(err)
@@ -61,7 +62,7 @@ export default function Recipe() {
                 <Link href='/cookbook' ><a className={style.retourBtn}>Retour</a></Link>
                 <h1>{recipe.name}</h1>
                 <div style={{width: "90%", margin: "0 auto"}}>
-                    <img src='/home.jpg' alt='recipe img' className={style.recipeImg} />
+                    <img src={recipe.imgUrl ? recipe.imgUrl : "/home.jpg"} alt='recipe img' className={style.recipeImg} />
                 </div>
                 <div className={style.container}>
                     <div className={style.time}>

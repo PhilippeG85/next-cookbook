@@ -7,7 +7,8 @@ const recipeSchema = new mongoose.Schema({
     level: { type: String, required: true },
     tag: { type: String, required: false },
     description: { type: Array, required: true },
-    user: { type: String, required: true }
+    user: { type: String, required: true },
+    imgUrl: { type: String, required: false }
   });
   
 module.exports = mongoose.models.Recipe || mongoose.model('Recipe', recipeSchema);
