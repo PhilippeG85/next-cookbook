@@ -11,7 +11,6 @@ export default function Recipe() {
     const router = useRouter()
     const userName = useContext(UserContext);
     const [recipe, setRecipe] = useState({});
-    console.log(recipe)
 
     useEffect(() => {
         if (userName) {
@@ -37,7 +36,22 @@ export default function Recipe() {
         if (recipe.description) {
             return recipe.description.map((des, i) => {
                 if (des !== ' ') {
-                    return <div key={i}><h3>Etapes {i + 1}:</h3><p>{des}</p></div>
+                    return (
+                        <div key={i}>
+                            <table style={{ width: "100%" }}>
+                                <tbody>
+                                    <tr>
+                                        <td style={{ width: "20%", verticalAlign: "top"}}>
+                                            <h3>Etapes {i + 1}:</h3>
+                                        </td>
+                                        <td>
+                                            <p>{des}</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    )
                 }
             })
         }
@@ -61,7 +75,7 @@ export default function Recipe() {
             <div className={style.recipe}>
                 <Link href='/cookbook' ><a className={style.retourBtn}>Retour</a></Link>
                 <h1>{recipe.name}</h1>
-                <div style={{width: "90%", margin: "0 auto"}}>
+                <div style={{width: "80%", margin: "0 auto"}}>
                     <img src={recipe.imgUrl ? recipe.imgUrl : "/home.jpg"} alt='recipe img' className={style.recipeImg} />
                 </div>
                 <div className={style.container}>
@@ -75,6 +89,7 @@ export default function Recipe() {
                             {displayIngredient()}
                         </ul>
                     </div>
+                    <hr className={style.hr} />
                     <div className={style.etape}>
                         {displayDescription()}
                     </div>

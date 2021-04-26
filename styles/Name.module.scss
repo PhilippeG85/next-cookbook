@@ -12,6 +12,10 @@
 .container {
     width: 80%;
     margin: 0 auto;
+    background: white;
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 2rem;
 }
 
 .time {
@@ -32,9 +36,19 @@
     width: 50%;
 }
 
+.hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: none;
+    border-top: 1px solid rgba(0,0,0,.4);
+    width: 80%;
+}
+
 .etape {
-    margin-top: 3rem;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
     div {
         margin-bottom: 1rem;
     }
@@ -45,13 +59,11 @@
 }
 
 .recipeLink {
-    position: absolute;
-    bottom: 18px;
-    right: 50%;
-    transform: translate(50%, 0px);
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    width: 20%;
+    margin: 0 auto;
     svg {
         height: 18px;
         transition: all ease .4s;

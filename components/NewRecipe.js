@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from 'react'
 import style from '../styles/New.module.scss'
 import axios from 'axios';
 import Head from 'next/head'
+import Router from 'next/router'
 
 
 export default function NewRecipe() {
@@ -52,7 +53,7 @@ export default function NewRecipe() {
                 body: JSON.stringify(newRecipe)
             })
             const data = await res.json()
-            console.log(data)
+            Router.push(`/cookbook/${data.name}`)
         } catch (err) {
             console.log(err)
         }
@@ -131,7 +132,7 @@ export default function NewRecipe() {
                     </div>
                 </div>
                 <div className={style.styleInput}>
-                    <input type='text' name='tag' value={tag} onChange={handleChange} autoComplete='off' required />
+                    <input type='text' name='tag' value={tag} onChange={handleChange} autoComplete='off' />
                     <label className={style.label}>
                         <span className={style.spanContent}>Tag</span>
                     </label>
@@ -144,7 +145,7 @@ export default function NewRecipe() {
                     }
                 </div>
                 <div className={style.newStep} onClick={handleClick}>Ajouter une étape</div>
-                <div>
+                <div style={{ marginTop: "1rem" }}>
                     <input type='file' name='image' onChange={handleImage} />
                 </div>
                 <div style={{position: "relative", height: "38px"}}>

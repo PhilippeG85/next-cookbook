@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import Menu from '../../../components/Menu'
 import Link from 'next/link'
 import style from '../../../styles/Update.module.scss'
+import axios from 'axios'
 
 export default function Update() {
     const userName = useContext(UserContext);
@@ -13,7 +14,8 @@ export default function Update() {
         level: '',
         tag: '',
         ingredient: [],
-        description: []
+        description: [],
+        imgUrl: ''
     })
 
     useEffect(() => {
@@ -35,14 +37,32 @@ export default function Update() {
         newEl.push('')
         setRecipe(prevRecipe => ({ ...prevRecipe, description: newEl }))
     }
-    
+    const url = process.env.NEXT_PUBLIC_CLOUDINARY_URL
+    const preset = process.env.NEXT_PUBLIC_UPLOAD_PRESET
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (typeof recipe.imgUrl === 'string') {
+            handleSubmitNext()
+        } else {
+            let formData = new FormData();
+            formData.append('file', recipe.imgUrl);
+            formData.append("upload_preset", preset);
+            axios.post(url, formData)
+                .then(res => handleSubmitNext(res.data.secure_url))
+                .catch(err => console.log(err))
+        }
+    }
+    
+    const handleSubmitNext = async (url) => {
         const newRecipe = recipe
         const newIng = ing.split(',')
         newRecipe.ingredient = newIng
         const filterDescription = recipe.description.filter(step => step !== '')
         newRecipe.description = filterDescription
+        if (url) {
+            newRecipe.imgUrl = url
+        }
         try {
             const res = await fetch(`http://localhost:3000/api/update/${recipe._id}`, {method: 'POST',body: JSON.stringify(newRecipe)})
             const data = await res.json()
@@ -63,7 +83,9 @@ export default function Update() {
             setRecipe(prevRecipe => ({ ...prevRecipe, level: e.target.value }))
         } else if (e.target.name === 'ingredient') {
             setIng(e.target.value)
-        } 
+        } else if (e.target.name === 'image') {
+            setRecipe(prevRecipe => ({ ...prevRecipe, imgUrl: e.target.files[0] }))
+        }
     }
 
     const handleStepChange = (e) => {
@@ -132,6 +154,9 @@ export default function Update() {
                             }
                         </div>
                         <div className={style.newStep} onClick={handleClick}>Ajouter une étape</div>
+                        <div style={{ marginTop: "1rem" }}>
+                            <input type='file' name='image' onChange={handleChange} />
+                        </div>
                         <div style={{position: "relative", height: "38px"}}>
                             <input className={style.submitBtn} type='submit' value='Enregistrer' required />
                         </div>
